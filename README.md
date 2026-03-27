@@ -1,51 +1,33 @@
-# WM Whats Empresa 💬
+# WM Whats Empresa - Comunicação Interna Corporativa
 
-App de comunicação interna para setores da empresa, inspirado no WhatsApp.
+[![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue)](https://seu-usuario.github.io/wm-whats-empresa)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-## 🚀 Como usar no GitHub Pages
+## 📱 Sobre o Projeto
 
-1. Crie um repositório no GitHub (ex: `wm-whats-empresa`)
-2. Faça upload dos arquivos:
-   - `index.html`
-   - `style.css`
-   - `app.js`
-   - `cover.png` *(logo da empresa)*
-3. Vá em **Settings → Pages → Branch: main → Save**
-4. Acesse: `https://seu-usuario.github.io/wm-whats-empresa`
+WM Whats Empresa é um sistema de comunicação interna completo para empresas, permitindo chat entre setores, gestão de usuários e administração de setores. Desenvolvido com HTML5, CSS3 e JavaScript puro, sem necessidade de servidor backend.
 
-## 📱 Funcionalidades
+## ✨ Funcionalidades
 
-- ✅ **Criar conta** com nome, senha, setor e cargo
-- ✅ **Login** por nome + senha + setor
-- ✅ **Setores** — canais de conversa por departamento
-- ✅ **Mensagens em tempo real** (via localStorage, atualiza a cada 5s)
-- ✅ **Painel Admin** — cria/remove setores e usuários
-- ✅ **Emojis** integrados
-- ✅ **Busca** de conversas
-- ✅ **Tema escuro** profissional
+- 🔐 **Sistema de Login/Registro** com validação
+- 💬 **Chat por Setores** (Geral, RH, TI, Vendas, Marketing, Financeiro)
+- 👥 **Identificação de Usuários** com nome, setor e cargo
+- 🎨 **Tema Escuro Moderno** com animações
+- 📊 **Painel Administrativo** para criar setores e gerenciar usuários
+- 🔔 **Indicadores de Mensagens Não Lidas**
+- 📱 **Design Responsivo** para mobile e desktop
+- 💾 **Armazenamento Local** com localStorage
+- 📤 **Exportação de Conversas** em arquivo .txt
+- 😀 **Emojis Integrados**
+- 🎭 **Splash Screen Animada**
+- 🌙 **Alternância de Tema** (Dark/Light)
 
-## 👤 Primeiro usuário = Admin
+## 🚀 Como Usar
 
-O **primeiro usuário** a criar conta se torna automaticamente administrador,
-com acesso ao painel de administração (criar setores, ver usuários).
+### Opção 1: Acessar Online
+Acesse: `https://seu-usuario.github.io/wm-whats-empresa`
 
-## 🎨 Setores padrão
-
-- Geral
-- Administrativo
-- Comercial
-- Financeiro
-- TI / Tecnologia
-- Recursos Humanos
-
-Administradores podem criar novos setores direto no app!
-
-## 📌 Observações
-
-- Os dados ficam salvos no **localStorage** do navegador de cada usuário
-- Para uso em rede, todos devem acessar a mesma URL (GitHub Pages)
-- O app atualiza mensagens automaticamente a cada 5 segundos
-- Coloque a imagem da logo como `cover.png` na mesma pasta
-
----
-**WM Whats Empresa** © 2025
+### Opção 2: Rodar Localmente
+1. Clone o repositório:
+```bash
+git clone https://github.com/seu-usuario/wm-whats-empresa.git
