@@ -2,98 +2,133 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WM Whats Empresa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>WM Whats Empresa | Comunicação Corporativa</title>
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
+<!-- SPLASH SCREEN -->
+<div id="splash-screen" class="splash">
+  <div class="splash-content">
+    <div class="splash-logo">
+      <div class="logo-animation">
+        <span>WM</span>
+      </div>
+    </div>
+    <h1>WM Whats Empresa</h1>
+    <p>Comunicação interna corporativa</p>
+    <div class="loader"></div>
+  </div>
+</div>
+
 <!-- AUTH SCREEN -->
-<div id="auth-screen" class="screen active">
+<div id="auth-screen" class="screen">
   <div class="auth-bg">
-    <div class="auth-particles" id="particles"></div>
+    <canvas id="particle-canvas"></canvas>
   </div>
   <div class="auth-container">
     <div class="auth-logo">
-      <img src="cover.png" alt="WM Whats Empresa" class="logo-img" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='flex'">
-      <div id="logo-fallback" class="logo-fallback" style="display:none">
-        <div class="logo-icon">WM</div>
-        <div class="logo-text"><span>whats</span><br><strong>empresa</strong></div>
+      <div class="logo-circle">
+        <i class="fas fa-comment-dots"></i>
       </div>
+      <h1>WM <span>Whats</span><br><small>Empresa</small></h1>
     </div>
+    
     <div class="auth-card">
       <div class="auth-tabs">
-        <button class="auth-tab active" onclick="switchTab('login')">Entrar</button>
-        <button class="auth-tab" onclick="switchTab('register')">Criar Conta</button>
+        <button class="auth-tab active" data-tab="login">🔐 Entrar</button>
+        <button class="auth-tab" data-tab="register">📝 Criar Conta</button>
       </div>
 
-      <!-- LOGIN -->
+      <!-- LOGIN FORM -->
       <div id="login-form" class="auth-form active">
         <h2>Bem-vindo de volta</h2>
-        <p class="auth-subtitle">Acesse sua conta corporativa</p>
+        <p>Acesse sua conta corporativa</p>
+        
         <div class="input-group">
-          <i class="fa fa-user"></i>
-          <input type="text" id="login-name" placeholder="Seu nome" autocomplete="off">
+          <i class="fas fa-user"></i>
+          <input type="text" id="login-name" placeholder="Seu nome de usuário" autocomplete="off">
         </div>
+        
         <div class="input-group">
-          <i class="fa fa-lock"></i>
-          <input type="password" id="login-pass" placeholder="Senha">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="login-pass" placeholder="Sua senha">
+          <i class="fas fa-eye toggle-password" onclick="togglePassword('login-pass')"></i>
         </div>
+        
         <div class="input-group">
-          <i class="fa fa-building"></i>
+          <i class="fas fa-building"></i>
           <select id="login-sector">
             <option value="">Selecione seu setor</option>
           </select>
         </div>
+        
         <button class="btn-primary" onclick="login()">
-          <i class="fa fa-sign-in-alt"></i> Entrar
+          <i class="fas fa-sign-in-alt"></i> Entrar
         </button>
         <p id="login-error" class="form-error"></p>
       </div>
 
-      <!-- REGISTER -->
+      <!-- REGISTER FORM -->
       <div id="register-form" class="auth-form">
-        <h2>Criar Conta</h2>
-        <p class="auth-subtitle">Registre-se no sistema interno</p>
+        <h2>Criar nova conta</h2>
+        <p>Registre-se no sistema interno</p>
+        
         <div class="input-group">
-          <i class="fa fa-user"></i>
+          <i class="fas fa-user"></i>
           <input type="text" id="reg-name" placeholder="Seu nome completo" autocomplete="off">
         </div>
+        
         <div class="input-group">
-          <i class="fa fa-lock"></i>
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="reg-email" placeholder="Seu e-mail corporativo">
+        </div>
+        
+        <div class="input-group">
+          <i class="fas fa-lock"></i>
           <input type="password" id="reg-pass" placeholder="Crie uma senha">
+          <i class="fas fa-eye toggle-password" onclick="togglePassword('reg-pass')"></i>
         </div>
+        
         <div class="input-group">
-          <i class="fa fa-lock"></i>
-          <input type="password" id="reg-pass2" placeholder="Confirme a senha">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="reg-pass2" placeholder="Confirme sua senha">
+          <i class="fas fa-eye toggle-password" onclick="togglePassword('reg-pass2')"></i>
         </div>
+        
         <div class="input-group">
-          <i class="fa fa-building"></i>
+          <i class="fas fa-building"></i>
           <select id="reg-sector">
             <option value="">Selecione seu setor</option>
           </select>
         </div>
+        
         <div class="input-group">
-          <i class="fa fa-id-badge"></i>
-          <input type="text" id="reg-role" placeholder="Cargo (ex: Gerente, Analista...)">
+          <i class="fas fa-id-badge"></i>
+          <input type="text" id="reg-role" placeholder="Seu cargo (ex: Gerente, Analista)">
         </div>
+        
         <button class="btn-primary" onclick="register()">
-          <i class="fa fa-user-plus"></i> Criar Conta
+          <i class="fas fa-user-plus"></i> Criar Conta
         </button>
         <p id="reg-error" class="form-error"></p>
         <p id="reg-success" class="form-success"></p>
       </div>
     </div>
-    <p class="auth-footer">WM Whats Empresa &copy; 2025 — Comunicação Interna</p>
+    
+    <p class="auth-footer">
+      <i class="fas fa-shield-alt"></i> Sistema seguro | Comunicação interna
+    </p>
   </div>
 </div>
 
 <!-- MAIN APP -->
 <div id="app-screen" class="screen">
   <div class="app-layout">
-
+    
     <!-- SIDEBAR -->
     <aside class="sidebar">
       <div class="sidebar-header">
@@ -101,34 +136,58 @@
           <div class="logo-mark">WM</div>
           <div class="logo-name">Whats<br><span>Empresa</span></div>
         </div>
-        <button class="btn-icon" onclick="logout()" title="Sair">
-          <i class="fa fa-sign-out-alt"></i>
-        </button>
+        <div class="header-actions">
+          <button class="btn-icon" onclick="toggleTheme()" title="Tema">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="btn-icon" onclick="logout()" title="Sair">
+            <i class="fas fa-sign-out-alt"></i>
+          </button>
+        </div>
       </div>
 
       <div class="user-profile">
-        <div class="user-avatar" id="sidebar-avatar"></div>
+        <div class="user-avatar" id="sidebar-avatar">
+          <div class="avatar-initials"></div>
+        </div>
         <div class="user-info">
           <div class="user-name" id="sidebar-name"></div>
           <div class="user-sector" id="sidebar-sector"></div>
         </div>
-        <span class="status-dot online"></span>
+        <div class="status-indicator">
+          <span class="status-dot online"></span>
+        </div>
       </div>
 
       <div class="sidebar-search">
-        <i class="fa fa-search"></i>
-        <input type="text" placeholder="Buscar conversa..." id="search-input" oninput="filterChats()">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Buscar conversa ou setor..." id="search-input" oninput="filterChats()">
       </div>
 
       <div class="sidebar-tabs">
-        <button class="stab active" onclick="switchSideTab('chats', this)"><i class="fa fa-comments"></i> Chats</button>
-        <button class="stab" onclick="switchSideTab('sectors', this)"><i class="fa fa-building"></i> Setores</button>
-        <button class="stab admin-only" onclick="switchSideTab('admin', this)" style="display:none"><i class="fa fa-cog"></i> Admin</button>
+        <button class="stab active" data-tab="chats">
+          <i class="fas fa-comments"></i>
+          <span>Chats</span>
+          <span class="tab-badge" id="chat-badge">0</span>
+        </button>
+        <button class="stab" data-tab="sectors">
+          <i class="fas fa-building"></i>
+          <span>Setores</span>
+        </button>
+        <button class="stab admin-only" data-tab="admin" style="display:none">
+          <i class="fas fa-crown"></i>
+          <span>Admin</span>
+        </button>
       </div>
 
       <!-- CHATS LIST -->
       <div id="tab-chats" class="side-tab active">
-        <div class="chat-list" id="chat-list"></div>
+        <div class="chat-list" id="chat-list">
+          <div class="empty-state">
+            <i class="fas fa-comments"></i>
+            <p>Nenhuma conversa ativa</p>
+          </div>
+        </div>
       </div>
 
       <!-- SECTORS LIST -->
@@ -139,49 +198,57 @@
       <!-- ADMIN PANEL -->
       <div id="tab-admin" class="side-tab">
         <div class="admin-panel">
-          <h3><i class="fa fa-cog"></i> Administração</h3>
-          <div class="admin-section">
-            <h4>Criar Setor</h4>
-            <div class="input-group small">
-              <i class="fa fa-tag"></i>
-              <input type="text" id="new-sector-name" placeholder="Nome do setor">
-            </div>
-            <div class="input-group small">
-              <i class="fa fa-palette"></i>
-              <select id="new-sector-color">
-                <option value="#00d4ff">Azul Ciano</option>
-                <option value="#00ff88">Verde</option>
-                <option value="#ff6b35">Laranja</option>
-                <option value="#ff3366">Vermelho</option>
-                <option value="#a855f7">Roxo</option>
-                <option value="#ffd700">Dourado</option>
-              </select>
-            </div>
-            <div class="input-group small">
-              <i class="fa fa-icons"></i>
-              <select id="new-sector-icon">
-                <option value="fa-briefcase">Administrativo</option>
-                <option value="fa-headset">Atendimento</option>
-                <option value="fa-chart-line">Comercial</option>
-                <option value="fa-code">TI / Tecnologia</option>
-                <option value="fa-dollar-sign">Financeiro</option>
-                <option value="fa-users">RH</option>
-                <option value="fa-boxes">Estoque</option>
-                <option value="fa-truck">Logística</option>
-                <option value="fa-wrench">Manutenção</option>
-                <option value="fa-bullhorn">Marketing</option>
-                <option value="fa-gavel">Jurídico</option>
-                <option value="fa-hard-hat">Operacional</option>
-              </select>
-            </div>
-            <button class="btn-primary small" onclick="createSector()"><i class="fa fa-plus"></i> Criar Setor</button>
+          <div class="admin-header">
+            <h3><i class="fas fa-crown"></i> Painel Administrativo</h3>
+            <p>Gerencie setores e usuários</p>
           </div>
+          
           <div class="admin-section">
-            <h4>Usuários <span id="user-count" class="badge"></span></h4>
+            <h4><i class="fas fa-plus-circle"></i> Criar Novo Setor</h4>
+            <div class="form-row">
+              <div class="input-group small">
+                <i class="fas fa-tag"></i>
+                <input type="text" id="new-sector-name" placeholder="Nome do setor">
+              </div>
+              <div class="input-group small">
+                <i class="fas fa-palette"></i>
+                <select id="new-sector-color">
+                  <option value="#00d4ff">Azul Ciano</option>
+                  <option value="#00ff88">Verde</option>
+                  <option value="#ff6b35">Laranja</option>
+                  <option value="#ff3366">Vermelho</option>
+                  <option value="#a855f7">Roxo</option>
+                  <option value="#ffd700">Dourado</option>
+                </select>
+              </div>
+              <div class="input-group small">
+                <i class="fas fa-icons"></i>
+                <select id="new-sector-icon">
+                  <option value="fa-briefcase">💼 Administrativo</option>
+                  <option value="fa-headset">🎧 Atendimento</option>
+                  <option value="fa-chart-line">📊 Comercial</option>
+                  <option value="fa-code">💻 TI / Tecnologia</option>
+                  <option value="fa-dollar-sign">💰 Financeiro</option>
+                  <option value="fa-users">👥 RH</option>
+                  <option value="fa-boxes">📦 Estoque</option>
+                  <option value="fa-truck">🚚 Logística</option>
+                  <option value="fa-wrench">🔧 Manutenção</option>
+                  <option value="fa-bullhorn">📢 Marketing</option>
+                </select>
+              </div>
+              <button class="btn-primary small" onclick="createSector()">
+                <i class="fas fa-check"></i> Criar
+              </button>
+            </div>
+          </div>
+          
+          <div class="admin-section">
+            <h4><i class="fas fa-users"></i> Usuários Cadastrados</h4>
             <div class="user-list-admin" id="user-list-admin"></div>
           </div>
+          
           <div class="admin-section">
-            <h4>Setores <span id="sector-count" class="badge"></span></h4>
+            <h4><i class="fas fa-building"></i> Setores da Empresa</h4>
             <div class="sector-list-admin" id="sector-list-admin"></div>
           </div>
         </div>
@@ -190,51 +257,74 @@
 
     <!-- CHAT AREA -->
     <main class="chat-area">
-      <!-- Welcome screen -->
       <div id="welcome-screen" class="welcome">
-        <div class="welcome-icon"><i class="fa fa-comments"></i></div>
+        <div class="welcome-animation">
+          <i class="fas fa-comment-dots"></i>
+        </div>
         <h2>WM Whats Empresa</h2>
         <p>Selecione um setor ou conversa para começar</p>
         <div class="welcome-stats" id="welcome-stats"></div>
       </div>
 
-      <!-- Active chat -->
       <div id="active-chat" class="active-chat" style="display:none">
         <div class="chat-header">
           <div class="chat-header-info">
             <div class="chat-avatar" id="chat-avatar"></div>
-            <div>
+            <div class="chat-details">
               <div class="chat-title" id="chat-title"></div>
-              <div class="chat-subtitle" id="chat-subtitle"></div>
+              <div class="chat-subtitle" id="chat-subtitle">
+                <span class="typing-indicator" id="typing-indicator" style="display:none">
+                  <span></span><span></span><span></span>
+                </span>
+              </div>
             </div>
           </div>
           <div class="chat-header-actions">
-            <button class="btn-icon" onclick="clearChat()" title="Limpar conversa"><i class="fa fa-trash-alt"></i></button>
+            <button class="btn-icon" onclick="clearChat()" title="Limpar conversa">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+            <button class="btn-icon" onclick="exportChat()" title="Exportar conversa">
+              <i class="fas fa-download"></i>
+            </button>
           </div>
         </div>
 
         <div class="messages-area" id="messages-area">
-          <div class="messages-inner" id="messages-inner"></div>
+          <div class="messages-inner" id="messages-inner">
+            <div class="loading-messages">
+              <div class="loader-small"></div>
+              <p>Carregando mensagens...</p>
+            </div>
+          </div>
         </div>
 
         <div class="message-input-area">
-          <div class="input-toolbar">
-            <button class="btn-emoji" onclick="toggleEmoji()" title="Emojis"><i class="fa fa-smile"></i></button>
-          </div>
-          <div class="emoji-panel" id="emoji-panel">
-            <div class="emoji-grid" id="emoji-grid"></div>
-          </div>
           <div class="message-box">
             <textarea id="msg-input" placeholder="Digite uma mensagem..." rows="1" onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
-            <button class="btn-send" onclick="sendMessage()" title="Enviar">
-              <i class="fa fa-paper-plane"></i>
-            </button>
+            <div class="input-actions">
+              <button class="btn-emoji" onclick="toggleEmoji()" title="Emojis">
+                <i class="fas fa-smile-wink"></i>
+              </button>
+              <button class="btn-send" onclick="sendMessage()" title="Enviar mensagem">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
+          </div>
+          <div class="emoji-panel" id="emoji-panel" style="display:none">
+            <div class="emoji-grid" id="emoji-grid"></div>
+          </div>
+          <div class="input-footer">
+            <span class="char-counter">0/500</span>
+            <span class="message-status"></span>
           </div>
         </div>
       </div>
     </main>
   </div>
 </div>
+
+<!-- NOTIFICATION TOAST -->
+<div id="toast-notification" class="toast"></div>
 
 <script src="app.js"></script>
 </body>
